@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Pedidos Pro</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f7f6; }
+    .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 13px; }
+    th { background-color: #007bff; color: white; position: sticky; top: 0; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    input[type="text"] { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+    .controls { margin-bottom: 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .btn-load { display: block; width: 100%; padding: 10px; margin-top: 10px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .footer-actions { margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 4px; }
+    #total { font-size: 1.2em; color: #28a745; }
+    button#enviar { background: #25d366; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    
+    /* Estilo para el botón eliminar */
+    .btn-borrar {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-borrar:hover { background: #cc0000; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Catálogo de Productos</h2>
+  
+  <div class="controls">
+    <input type="text" id="buscar" placeholder="🔍 Buscar por nombre, código o categoría...">
+    <small id="contador"></small>
+  </div>
+
+  <div style="overflow-x:auto; max-height: 500px;">
+    <table id="tabla">
+      <thead>
+        <tr id="headers"></tr>
+      </thead>
+      <tbody id="cuerpoTabla"></tbody>
+    </table>
+  </div>
+  
+  <button id="btnMas" class="btn-load" style="display:none;">Cargar más productos...</button>
+<hr>
+<div id="resumen-contenedor" style="margin-top: 30px; padding: 15px; background: #f9f9f9; border-radius: 8px; border: 1px solid #ddd;">
+    <h3>🛒 Resumen de tu Pedido</h3>
+    <table style="width: 100%; background: white;">
+        <thead>
+            <tr style="background: #2c3e50; color: white;">
+                <th>Producto</th>
+                <th>Cant.</th>
+                <th>P. Unit</th>
+                <th>Subtotal</th>
+                <th style="text-align: center;">Acción</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoResumen"></tbody>
+    </table>
+    <h4 style="text-align: right; margin-top: 10px;">Subtotal Acumulado: S/ <span id="totalResumen">0.00</span></h4>
+</div>
+
+  <div class="footer-actions">
+    <p><strong>MONTO TOTAL ESTIMADO: S/ <span id="total">0.00</span></strong></p>
+    <label for="vendedor">Enviar pedido a:</label>
+    <select id="vendedor"></select>
+    <button id="enviar">Enviar por WhatsApp</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
