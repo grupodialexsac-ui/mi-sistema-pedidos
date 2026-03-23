@@ -1,0 +1,151 @@
+/* General */
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 20px; 
+    background-color: #e2e8f0; 
+}
+
+.container { 
+    max-width: 1100px; 
+    margin: auto; 
+    background: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
+
+/* =========================================
+   CABECERA DIALEX
+   ========================================= */
+.header-brand {
+    background-color: #003366; 
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px 8px 0 0;
+    margin: -20px -20px 20px -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo-container { display: flex; align-items: center; gap: 15px; }
+.main-logo { height: 45px; width: auto; }
+.tagline { font-size: 14px; border-left: 1px solid rgba(255,255,255,0.3); padding-left: 15px; }
+.search-container { flex-grow: 1; max-width: 400px; }
+.search-input { width: 100%; border-radius: 20px; border: none; padding: 10px 20px; outline: none; font-size: 14px; box-sizing: border-box; }
+
+/* Tablas */
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 10px; 
+}
+
+th, td { 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    text-align: left; 
+    font-size: 13px; 
+}
+
+th { 
+    background-color: #003366; 
+    color: white; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+}
+
+tr:nth-child(even) { 
+    background-color: #f8fafc; 
+}
+
+/* Inputs generales */
+input[type="text"]:not(.search-input), select, textarea { 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    width: 100%; 
+}
+
+.btn-load { 
+    display: block; 
+    width: 100%; 
+    padding: 12px; 
+    margin-top: 10px; 
+    background: #6c757d; 
+    color: white; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-weight: bold; 
+}
+
+/* Resumen */
+#resumen-contenedor { 
+    margin-top: 30px; 
+    padding: 20px; 
+    background: #f8fafc; 
+    border-radius: 8px; 
+    border: 1px solid #cbd5e1; 
+}
+
+#resumen-contenedor h3 { 
+    margin-top: 0; 
+    color: #003366; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.notas-vendedor { margin-top: 20px; }
+.notas-vendedor textarea { width: 100%; resize: vertical; min-height: 80px; font-family: inherit; }
+
+/* Botones y Footer */
+.footer-actions { 
+    margin-top: 20px; 
+    padding: 20px; 
+    background: white; 
+    border-top: 2px solid #e2e8f0;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+}
+
+#total-final-container { font-size: 1.3em; color: #1e293b; }
+
+button#enviar { background: #22c55e; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; }
+button#enviar:hover { background: #16a34a; transform: translateY(-2px); }
+
+#btnFoto, #btnPDF { background: #003366; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+#btnFoto:hover, #btnPDF:hover { background: #002244; }
+
+.btn-borrar { background: #ff4d4d; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+.btn-borrar:hover { background: #cc0000; }
+
+.btn-borrar-todo { background: #fff; color: #dc3545; border: 1px solid #dc3545; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.3s; }
+.btn-borrar-todo:hover { background: #dc3545; color: white; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .header-brand { flex-direction: column; text-align: center; }
+    .search-container { width: 100%; max-width: none; }
+    th, td { padding: 6px; font-size: 11px; }
+    #resumen-contenedor table th:nth-child(2),
+    #resumen-contenedor table td:nth-child(2) { display: none; }
+    .footer-actions { flex-direction: column; align-items: stretch; text-align: center; }
+    .footer-actions > div { flex-direction: column; align-items: stretch; width: 100%; }
+    #btnFoto, #btnPDF { width: 100%; margin-top: 10px; padding: 12px 5px; font-size: 11px; }
+    #enviar { width: 100%; margin-top: 10px; }
+}
+
+/* CLASE ESPECIAL EXPORTACIONES */
+.forzar-vista-pc { width: 1024px !important; padding: 30px !important; margin: 0 !important; }
+.forzar-vista-pc table { width: 100% !important; }
+.forzar-vista-pc table th:nth-child(2), .forzar-vista-pc table td:nth-child(2) { display: table-cell !important; }
+.forzar-vista-pc th, .forzar-vista-pc td { font-size: 13px !important; padding: 10px !important; }
