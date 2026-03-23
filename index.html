@@ -1,82 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema de Pedidos Pro</title>
-  <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f4f7f6; }
-    .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 13px; }
-    th { background-color: #007bff; color: white; position: sticky; top: 0; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    input[type="text"] { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-    .controls { margin-bottom: 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-    .btn-load { display: block; width: 100%; padding: 10px; margin-top: 10px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    .footer-actions { margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 4px; }
-    #total { font-size: 1.2em; color: #28a745; }
-    button#enviar { background: #25d366; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-    
-    /* Estilo para el botón eliminar */
-    .btn-borrar {
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 4px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .btn-borrar:hover { background: #cc0000; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pedidos - Grupo Dialex</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-  <h2>Catálogo de Productos</h2>
-  
-  <div class="controls">
-    <input type="text" id="buscar" placeholder="🔍 Buscar por nombre, código o categoría...">
-    <small id="contador"></small>
-  </div>
 
-  <div style="overflow-x:auto; max-height: 500px;">
-    <table id="tabla">
-      <thead>
-        <tr id="headers"></tr>
-      </thead>
-      <tbody id="cuerpoTabla"></tbody>
-    </table>
-  </div>
-  
-  <button id="btnMas" class="btn-load" style="display:none;">Cargar más productos...</button>
-<hr>
-<div id="resumen-contenedor" style="margin-top: 30px; padding: 15px; background: #f9f9f9; border-radius: 8px; border: 1px solid #ddd;">
-    <h3>🛒 Resumen de tu Pedido</h3>
-    <table style="width: 100%; background: white;">
-        <thead>
-            <tr style="background: #2c3e50; color: white;">
-                <th>Producto</th>
-                <th>Cant.</th>
-                <th>P. Unit</th>
-                <th>Subtotal</th>
-                <th style="text-align: center;">Acción</th>
-            </tr>
-        </thead>
-        <tbody id="cuerpoResumen"></tbody>
-    </table>
-    <h4 style="text-align: right; margin-top: 10px;">Subtotal Acumulado: S/ <span id="totalResumen">0.00</span></h4>
+    <div class="header-brand">
+        <div class="logo-container">
+            <img src="img/logodialex.png" alt="Grupo Dialex" class="main-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none; font-size: 20px; font-weight: bold;">GRUPO DIALEX</span>
+            <span class="tagline">Droguería y distribuidora de medicamentos</span>
+        </div>
+        <div class="search-container">
+            <input type="text" id="buscar" placeholder="🔍 Buscar por nombre o principio activo" class="search-input">
+        </div>
+    </div>
+
+    <div style="overflow-x:auto; max-height:450px; border:1px solid #ddd; border-radius:4px; margin-top: 20px;">
+        <table id="tabla">
+            <thead>
+                <tr id="headers"></tr>
+            </thead>
+            <tbody id="cuerpoTabla"></tbody>
+        </table>
+    </div>
+
+    <button id="btnMas" class="btn-load" style="display:none;">Cargar más productos...</button>
+
+    <hr style="margin:40px 0; border: 0; border-top: 1px solid #ddd;">
+
+    <div id="resumen-contenedor">
+
+        <div id="header-resumen" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
+            <h3 style="margin: 0;">🛒 Resumen de tu Pedido</h3>
+            <button id="btnBorrarTodo" class="btn-borrar-todo" style="display:none;">🗑️ Borrar Todo</button>
+        </div>
+
+        <div id="box-cliente" style="margin-bottom:10px;">
+            <label><strong>Cliente / Farmacia:</strong></label>
+            <input type="text" id="clienteNombre" placeholder="Ej: Botica San Juan" style="width:100%;padding:6px;">
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table style="width:100%;">
+                <thead>
+                    <tr style="background:#003366;color:white;">
+                        <th>Producto</th>
+                        <th>Laboratorio</th>
+                        <th>Vencimiento</th>
+                        <th style="text-align:center;">Cant.</th>
+                        <th>P. Unit</th>
+                        <th>Subtotal</th>
+                        <th class="col-accion">Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoResumen"></tbody>
+            </table>
+        </div>
+
+        <div id="box-notas" class="notas-vendedor">
+            <label><strong>📝 Notas para el vendedor</strong></label>
+            <textarea id="notasVendedor"></textarea>
+        </div>
+
+        <h4 style="text-align:right;margin-top:15px; color:#003366;">
+            Subtotal Acumulado: S/ <span id="totalResumen">0.00</span>
+        </h4>
+
+    </div>
+
+    <div class="footer-actions">
+        <div id="total-final-container">
+            <strong>MONTO TOTAL ESTIMADO: S/ <span id="total">0.00</span></strong>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap; align-items: center;">
+            <button id="btnFoto">📸 Descargar pedido foto</button>
+            <button id="btnPDF">📄 Descargar pedido pdf</button>
+
+            <div style="display:flex; align-items: center; gap: 5px;">
+                <label>Enviar pedido a:</label>
+                <select id="vendedor" style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;"></select>
+            </div>
+
+            <button id="enviar">Enviar por WhatsApp</button>
+        </div>
+    </div>
+
 </div>
 
-  <div class="footer-actions">
-    <p><strong>MONTO TOTAL ESTIMADO: S/ <span id="total">0.00</span></strong></p>
-    <label for="vendedor">Enviar pedido a:</label>
-    <select id="vendedor"></select>
-    <button id="enviar">Enviar por WhatsApp</button>
-  </div>
-</div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
